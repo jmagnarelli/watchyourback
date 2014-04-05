@@ -10,6 +10,7 @@ from secrets import *
 
 # Build this stuff up in advance because it makes things easier
 
+logging.basicConfig(level=logging.DEBUG)
 # Define emergency service uids here
 BALTIMORE_PD_ID = 22197119
 BALTIMORE_FIRE_ID = 46669448
@@ -54,7 +55,7 @@ class MessageSender(object):
             dest_phone = recipient['phone_number']
             logging.info("Sending SMS message to {0}".format(dest_phone))
             message = self.twilio_client.sms.messages.create(body="WOOOO BITCAMP", to=dest_phone, from_="+17813281143")
-            
+
 
 class TestListener(tweepy.StreamListener):
     
