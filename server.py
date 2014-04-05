@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, session
 import pymongo
 
 
-app = Flask(__name__, static_url_path="static", static_folder="static")
+app = Flask(__name__)
 app.debug = True
 app.secret_key = 'WOW_SO_SECRET_ZOMG'
 

@@ -36,7 +36,6 @@ class MessageSender(object):
     def __init__(self, db):
         self.twilio_client = TwilioRestClient(twilio_key, twilio_secret)
 
-
     def send_tweet(self, tweet):
         cur_region = UIDS_TO_REGIONS[tweet['user']['id']]
         recipients = db.users.find({'region': cur_region})
@@ -65,8 +64,6 @@ class TestListener(tweepy.StreamListener):
         print('AHHHHHHHHHHH {0}'.format(status))
 
 def _main():
-
-
 
     db = pymongo.MongoClient().user_data
     sender = MessageSender(db)
