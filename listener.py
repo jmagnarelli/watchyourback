@@ -35,10 +35,11 @@ class MessageSender(object):
 
     def __init__(self, db):
         self.twilio_client = TwilioRestClient(twilio_key, twilio_secret)
+        self.db = db
 
     def send_tweet(self, tweet):
         cur_region = UIDS_TO_REGIONS[tweet['user']['id']]
-        recipients = db.users.find({'region': cur_region})
+        recipients = self.db.users.find({'region': cur_region})
         for recipient in recipients: 
             message = self.twilio_client.sms.messages.create(body="WOOOO BITCAMP", to=recipient, from_="+17813281143")
 
