@@ -73,7 +73,8 @@ class TestListener(tweepy.StreamListener):
         print('@{0}: {1}'.format(decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore')))
 
         if TweetAnalyzer.is_criminal(decoded):
-            self.sender.send_tweet(decoded)
+            print("here's where we'd send the texts!")
+            #self.sender.send_tweet(decoded)
 
     def on_error(self, status):
         print('AHHHHHHHHHHH {0}'.format(status))
@@ -89,7 +90,7 @@ def _main():
 
     stream = tweepy.Stream(auth, listener)
     logging.info("Beginning stream...")
-    stream.filter(follow=[str(BALTIMORE_PD_ID), str(BALTIMORE_FIRE_ID)])
+    stream.filter(follow=['2429573322'])#str(BALTIMORE_PD_ID), str(BALTIMORE_FIRE_ID)])
 
 
 if __name__ == '__main__':
