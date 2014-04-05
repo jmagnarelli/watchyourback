@@ -1,6 +1,7 @@
 import tweepy
 import json
 import pymongo
+import re
 from twilio.rest import TwilioRestClient
 
 from secrets import *
@@ -29,7 +30,13 @@ class TweetAnalyzer(object):
     def is_criminal(tweet):
         """Return whether the tweet is evidence of criminal activity or not"""
         # TODO (jmagnarelli): write this
-        return True
+        text = tweet.text
+        CRIME_KEYWORDS = ("shooting", "crime", "suspect", "gun", "custody", "silver", "alert")
+        for word in CRIME_KEYWORDS:
+            if word in text:
+                return True
+
+        return False
 
 class MessageSender(object):
     """Handles sending tweets through twilio"""
