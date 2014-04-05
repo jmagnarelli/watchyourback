@@ -10,9 +10,10 @@ from secrets import *
 
 # Define pd uids here
 BALTIMORE_PD_ID = 22197119
+BALTIMORE_FIRE_ID = 46669448
 
 # For determining what to listen to given a region
-REGIONS_TO_UIDS = {'baltimore': [BALTIMORE_PD_ID]}
+REGIONS_TO_UIDS = {'baltimore': [BALTIMORE_PD_ID, BALTIMORE_FIRE_ID]}
 
 # For lookup when we receive a tweet and all we have is a uid
 UIDS_TO_REGIONS = {}
