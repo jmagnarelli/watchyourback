@@ -76,7 +76,7 @@ def _main():
     auth.set_access_token(twit_oauth_token, twit_oauth_secret)
 
     stream = tweepy.Stream(auth, listener)
-    stream.filter(follow=[BALTIMORE_PD_ID])
+    stream.filter(follow=[str(BALTIMORE_PD_ID)])
 
 
 if __name__ == '__main__':
