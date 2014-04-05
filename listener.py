@@ -1,5 +1,6 @@
 import tweepy
 import json
+import logging
 import pymongo
 import re
 from twilio.rest import TwilioRestClient
@@ -9,7 +10,7 @@ from secrets import *
 
 # Build this stuff up in advance because it makes things easier
 
-# Define pd uids here
+# Define emergency service uids here
 BALTIMORE_PD_ID = 22197119
 BALTIMORE_FIRE_ID = 46669448
 
@@ -34,6 +35,7 @@ class TweetAnalyzer(object):
         CRIME_KEYWORDS = ("shooting", "crime", "suspect", "gun", "custody", "silver", "alert")
         for word in CRIME_KEYWORDS:
             if word in text:
+                logging.info("Tweet with id {0} was criminal activity".format(tweet.id))
                 return True
 
         return False
@@ -49,7 +51,10 @@ class MessageSender(object):
         cur_region = UIDS_TO_REGIONS[tweet['user']['id']]
         recipients = self.db.users.find({'region': cur_region})
         for recipient in recipients: 
-            message = self.twilio_client.sms.messages.create(body="WOOOO BITCAMP", to=recipient, from_="+17813281143")
+            dest_phone = recipient['phone_number']
+            logging.info("Sending SMS message to {0}".format(dest_phone))
+            message = self.twilio_client.sms.messages.create(body="WOOOO BITCAMP", to=dest_phone, from_="+17813281143")
+            
 
 class TestListener(tweepy.StreamListener):
     
@@ -82,7 +87,8 @@ def _main():
     auth.set_access_token(twit_oauth_token, twit_oauth_secret)
 
     stream = tweepy.Stream(auth, listener)
-    stream.filter(follow=[str(BALTIMORE_PD_ID)])
+    logging.info("Beginning stream...")
+    stream.filter(follow=[str(BALTIMORE_PD_ID), str(BALTIMORE_FIRE_ID)])
 
 
 if __name__ == '__main__':
