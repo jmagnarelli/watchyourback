@@ -9,7 +9,7 @@ from secrets import *
 # Build this stuff up in advance because it makes things easier
 
 # Define pd uids here
-BALTIMORE_PD_ID = '22197119'
+BALTIMORE_PD_ID = 22197119
 
 # For determining what to listen to given a region
 REGIONS_TO_UIDS = {'baltimore': [BALTIMORE_PD_ID]}
