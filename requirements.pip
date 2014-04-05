@@ -1,5 +1,5 @@
 flask
-lob
+lob-python
 pymongo
 tweepy
 twilio
