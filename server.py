@@ -26,4 +26,4 @@ def add_user():
 	return jsonify({'message': 'All good!'})
 
 if __name__ == '__main__':
-	app.run(port=80) # Yeah, I know the debug server shouldn't be used in prod. This is a hackathon.
+	app.run() # Yeah, I know the debug server shouldn't be used in prod. This is a hackathon.
