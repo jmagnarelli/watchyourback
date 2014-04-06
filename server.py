@@ -29,7 +29,8 @@ def add_user():
 		abort(400)
 
 	user = {'phone_number': request.json['phoneNumber'],
-			'region': request.json['region']}
+			'region': request.json['region'],
+			'address': request.json['address']}
 	db.users.insert(user)
 
 	return jsonify({'message': 'All good!'})
