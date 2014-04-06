@@ -32,7 +32,7 @@ class TweetAnalyzer(object):
     def is_criminal(tweet):
         """Return whether the tweet is evidence of criminal activity or not"""
         # TODO (jmagnarelli): write this
-        text = tweet.text
+        text = tweet['text']
         CRIME_KEYWORDS = ("shooting", "crime", "suspect", "gun", "custody", "silver", "alert", "on the scene", "working fire")
         for word in CRIME_KEYWORDS:
             if word in text:
