@@ -12,7 +12,7 @@ db = pymongo.MongoClient().user_data
 
 @app.route('/')
 def root():
-	return send_from_directory(app.root_path + '/static/index.html')
+	return send_from_directory(app.root_path + '/static/', 'index.html')
 
 @app.route('/<path:filename>')
 def static_file(filename):
