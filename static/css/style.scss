@@ -1,10 +1,21 @@
+$mutequa: #267485;
+$ltblue: #def3f7;
+$ltblue-a: rgba(222,243,247,.8);
+
 body {
-  background-color: #100821;
+  background: url(../img/popobg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: #333;
 }
 
 .well {
-  background-color: #D2F4EF;
-  border-color: #D2F4EF;
+  background-color: $ltblue-a;
+  border-color: $ltblue-a;
   margin-top: 50px;
+  h4 {
+    text-align: center;
+  }
 }
