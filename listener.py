@@ -77,10 +77,9 @@ class MessageSender(object):
                 # TODO (jmagnarelli): log this shit
                 try:
                     message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
-                    message = sendpicture(address['name'],address['street'],address['city'],address['state'],address['zip'], 'US', message_text)
+                    message = sendpicture(dest_address['name'],dest_address['street'],dest_address['city'],dest_address['state'],dest_address['zip'], 'US', message_text)
                 except Exception as e:
-                    import pdb; pdb.set_trace()
-                    logging.info("whatever-lob")
+                    logging.info("whatever-lob {0}".format(e))
 
 
 class TestListener(tweepy.StreamListener):
