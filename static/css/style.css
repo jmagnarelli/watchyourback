@@ -24,6 +24,9 @@ body {
     text-align: left;
     margin-left: 40px; }
 
+.btn {
+  font-weight: 300; }
+
 .btn-primary {
   background-color: #4c3957;
   border-color: #4c3957; }
@@ -37,3 +40,6 @@ body {
 
 .cities {
   margin-bottom: 15px; }
+
+.submit {
+  margin-top: 20px; }
