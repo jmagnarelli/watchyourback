@@ -28,10 +28,12 @@ REGIONS_TO_UIDS = {'baltimore': [TEST_ACCT_ID, BALTIMORE_PD_ID, BALTIMORE_FIRE_I
                     'newyork': [NYPD911_ID, NYCityAlerts_ID, FDNY_ID, TEST_ACCT_ID],
                     'chicago': [CHICAGO_PD, CHICAGO_FIRE_DEPARTMENT, TEST_ACCT_ID]}
 
+LISTEN_UIDS = []
 # For lookup when we receive a tweet and all we have is a uid
 UIDS_TO_REGIONS = {}
 for k, v in REGIONS_TO_UIDS.iteritems():
     for uid in v:
+        LISTEN_UIDS.append(str(uid))
         UIDS_TO_REGIONS[uid] = k
 
 
@@ -112,10 +114,7 @@ def _main():
 
     stream = tweepy.Stream(auth, listener)
     logging.info("Beginning stream...")
-    accts = []
-    for accts in REGIONS_TO_UIDS.values():
-        accts.extend([str(val) for val in accts])
-    stream.filter(follow=accts)
+    stream.filter(follow=LISTEN_UIDS)
 
 if __name__ == '__main__':
     _main()
