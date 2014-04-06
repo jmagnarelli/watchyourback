@@ -78,8 +78,9 @@ class MessageSender(object):
                 try:
                     message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
                     message = sendpicture(address['name'],address['street'],address['city'],address['state'],address['zip'], 'US', message_text)
-                except:
-                    logging.info("whatever")
+                except Exception as e:
+                    import pdb; pdb.set_trace()
+                    logging.info("whatever-lob")
 
 
 class TestListener(tweepy.StreamListener):
