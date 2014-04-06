@@ -18,6 +18,8 @@ BALTIMORE_FIRE_ID = 46669448
 NYPD911_ID = 2190685427 #@NYPD911Dispatch
 NYCityAlerts_ID = 487198119 # @nycityalerts
 FDNY_ID= 134846593 #@fdny
+CHICAGO_PD #@Chicago_Police
+CHICAGO_FIRE_DEPARTMENT #@CFDMedia
 
 TEST_ACCT_ID = 2429573322
 
@@ -39,9 +41,9 @@ class TweetAnalyzer(object):
         """Return whether the tweet is evidence of criminal activity or not"""
         # TODO (jmagnarelli): write this
         text = tweet['text']
-        CRIME_KEYWORDS = ("shooting", "crime", "suspect", "gun", "custody", "silver", "alert", "on the scene", "working fire")
+        CRIME_KEYWORDS = ("shooting", "stabbing","carjack","carjacked","carjacking", "crime", "suspect", "gun", "shots fired", "custody", "silver", "alert", "on the scene", "working fire", "reporting a fire", "brush fire", "dwelling fire", "struck by", "Active crime scene", "EMS", "hit and run", "murder", "hazmat")
         for word in CRIME_KEYWORDS:
-            if word in text:
+            if word.lower() in text.lower(): #hopefully this will ignore case, not break the entire thing
                 logging.info("Tweet with id {0} was criminal activity".format(tweet['id']))
                 return True
 
