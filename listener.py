@@ -14,9 +14,10 @@ logging.basicConfig(level=logging.DEBUG)
 # Define emergency service uids here
 BALTIMORE_PD_ID = 22197119
 BALTIMORE_FIRE_ID = 46669448
+TEST_ACCT_ID = 2429573322
 
 # For determining what to listen to given a region
-REGIONS_TO_UIDS = {'Baltimore': [BALTIMORE_PD_ID, BALTIMORE_FIRE_ID]}
+REGIONS_TO_UIDS = {'Baltimore': [TEST_ACCT_ID]}#BALTIMORE_PD_ID, BALTIMORE_FIRE_ID]}
 
 # For lookup when we receive a tweet and all we have is a uid
 UIDS_TO_REGIONS = {}
@@ -89,7 +90,7 @@ def _main():
 
     stream = tweepy.Stream(auth, listener)
     logging.info("Beginning stream...")
-    stream.filter(follow=['2429573322'])#str(BALTIMORE_PD_ID), str(BALTIMORE_FIRE_ID)])
+    stream.filter(follow=[str(TEST_ACCT_ID)])#str(BALTIMORE_PD_ID), str(BALTIMORE_FIRE_ID)])
 
 
 if __name__ == '__main__':
