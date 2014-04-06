@@ -131,6 +131,7 @@
         success: function (e) {
             console.log(e);
             $('#submit-btn').addClass('btn-success');
+            $('#submit-btn').removeClass('btn-primary');
         },
         error: function (xhr, ajaxOptions, thrownError) {
           alert(xhr.status);
