@@ -61,13 +61,19 @@ class MessageSender(object):
             dest_phone = recipient['phone_number']
             dest_address = recipient['address']
             if dest_phone:
-                logging.info("Sending SMS message to {0}".format(dest_phone))
-                message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
-                message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
+                try:
+                    logging.info("Sending SMS message to {0}".format(dest_phone))
+                    message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+                    message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
+                except:
+                    logging.info("whatever")
             if dest_address:
                 # TODO (jmagnarelli): log this shit
-                message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
-                message = sendpicture(address['name'],address['street'],address['city'],address['state'],address['zip'],country, message_text)
+                try:
+                    message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+                    message = sendpicture(address['name'],address['street'],address['city'],address['state'],address['zip'], 'US', message_text)
+                except:
+                    logging.info("whatever")
 
 
 class TestListener(tweepy.StreamListener):
