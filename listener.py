@@ -61,25 +61,28 @@ class MessageSender(object):
         self.db = db
 
     def send_tweet(self, tweet):
-        cur_region = UIDS_TO_REGIONS[tweet['user']['id']]
-        recipients = self.db.users.find({'region': cur_region})
-        for recipient in recipients: 
-            dest_phone = recipient['phone_number']
-            dest_address = recipient['address']
-            if dest_phone:
-                try:
-                    logging.info("Sending SMS message to {0}".format(dest_phone))
-                    message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
-                    message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
-                except:
-                    logging.info("whatever")
-            if dest_address:
-                # TODO (jmagnarelli): log this shit
-                try:
-                    message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
-                    message = sendpicture(dest_address['name'],dest_address['street'],dest_address['city'],dest_address['state'],dest_address['zip'], 'US', message_text)
-                except Exception as e:
-                    logging.info("whatever-lob {0}".format(e))
+        try:
+            cur_region = UIDS_TO_REGIONS[tweet['user']['id']]
+            recipients = self.db.users.find({'region': cur_region})
+            for recipient in recipients: 
+                dest_phone = recipient['phone_number']
+                dest_address = recipient['address']
+                if dest_phone:
+                    try:
+                        logging.info("Sending SMS message to {0}".format(dest_phone))
+                        message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+                        message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
+                    except:
+                        logging.info("whatever")
+                if dest_address:
+                    # TODO (jmagnarelli): log this shit
+                    try:
+                        message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+                        message = sendpicture(dest_address['name'],dest_address['street'],dest_address['city'],dest_address['state'],dest_address['zip'], 'US', message_text)
+                    except Exception as e:
+                        logging.info("whatever-lob {0}".format(e))
+        except Exception as e:
+            logging.info("No retweets")
 
 
 class TestListener(tweepy.StreamListener):
