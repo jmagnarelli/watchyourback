@@ -10,8 +10,7 @@ body {
 .well {
   background-color: rgba(222, 243, 247, 0.75);
   border-color: rgba(222, 243, 247, 0.75);
-  margin-top: 50px;
-  text-align: center; }
+  margin-top: 50px; }
   .well h3 {
     margin-top: 0;
     text-transform: uppercase;
@@ -19,10 +18,10 @@ body {
     letter-spacing: 2px;
     color: #173d5c;
     font-weight: 300;
-    border-bottom: dotted 2px #173d5c; }
-  .well h4 {
-    text-align: left;
-    margin-left: 40px; }
+    border-bottom: dotted 2px #173d5c;
+    text-align: center; }
+  .well label {
+    text-align: left; }
 
 .btn {
   font-weight: 300; }

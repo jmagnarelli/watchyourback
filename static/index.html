@@ -31,36 +31,54 @@
           <div class="col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-3">
             <div class="well well-lg">
               <h3>Pick a City</h3>
-              <div class="btn-group cities" data-toggle="buttons">
-                <label class="btn btn-primary">
+              <div class="text-center">
+                <div class="btn-group cities" data-toggle="buttons">
+                  <label class="btn btn-primary">
+                    <input type="radio" name="options" id="baltimore"> Baltimore
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="radio" name="options" id="boston"> Boston
+                  </label>
+                  <label class="btn btn-primary">
+                    <input type="radio" name="options" id="newyork"> New York
+                  </label>
+                </div>
+              </div>
 
-                  <input type="radio" name="options" id="baltimore"> Baltimore
-                </label>
-                <label class="btn btn-primary">
-                  <input type="radio" name="options" id="boston"> Boston
-                </label>
-                <label class="btn btn-primary">
-                  <input type="radio" name="options" id="newyork"> New York
+              <h3>How do you want us to send you alerts?</h3>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="sms-box"> SMS Notification
                 </label>
               </div>
-              
-              <h3>How do you want us to send you alerts?</h3>
-              <h4>SMS Notifications</h4>
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <input type="checkbox" id="sms-box">
-                </span>
-                <input type="text" id="phone-number" class="form-control" placeholder="Phone Number">
-              </div><!-- /input-group -->
-              <h4>US Mail</h4>
-              <div class="input-group">
-                <span class="input-group-addon">
-                  <input type="checkbox" id="mail-box">
-                </span>
-                <input id="address" type="text" class="form-control" placeholder="Mailing Address">
-              </div><!-- /input-group -->
+              <input type="text" id="phone-number" class="form-control" placeholder="Phone Number"> 
+     
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" id="mail-box"> The Good Ol' US Postal Service
+                </label>
+              </div>
 
-              <a id="submit-btn" class="btn btn-primary btn-lg btn-block submit" role="button">Sign me up</a>
+              <div class="form-group">
+                <input id="address1" type="text" class="form-control add" placeholder="Address Line 1">
+              </div>
+              <div class="form-group">
+                <input id="address2" type="text" class="form-control add" placeholder="Address Line 2">
+              </div>
+              <div class="row">
+                <div class="col-xs-8 col-xs-offset-2 form-group">
+                  <input id="city" type="text" class="form-control add" placeholder="City">
+                </div>
+                <div class="col-xs-4 col-xs-offset-2">
+                  <input id="city" type="text" class="form-control add" placeholder="State">
+                </div>
+                <div class="col-xs-4">
+                  <input id="city" type="text" class="form-control add" placeholder="Zipcode">
+                </div>
+
+
+              </div>
+              <a id="submit-btn" class="btn btn-primary btn-lg btn-block submit" role="button">Sign me up!</a>
 
             </div><!-- /wells -->
           </div><!-- /md cols -->
