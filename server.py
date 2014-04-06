@@ -35,7 +35,7 @@ def add_user():
 
 		return jsonify({'message': 'All good!'})
 	except:
-		return 400
+		abort(400)
 
 if __name__ == '__main__':
 	app.run(host='www.tweetpd.com', port=80, debug=True) # Yeah, I know the debug server shouldn't be used in prod. This is a hackathon.
