@@ -34,6 +34,10 @@ body {
   }
 }
 
+.btn {
+  font-weight: 300;
+}
+
 .btn-primary {
   background-color: $purple;
   border-color: $purple;
@@ -50,4 +54,8 @@ body {
 
 .cities {
   margin-bottom: 15px;
+}
+
+.submit {
+  margin-top: 20px;
 }
