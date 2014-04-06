@@ -73,8 +73,7 @@ class TestListener(tweepy.StreamListener):
         print('@{0}: {1}'.format(decoded['user']['screen_name'], decoded['text'].encode('ascii', 'ignore')))
 
         if TweetAnalyzer.is_criminal(decoded):
-            print("here's where we'd send the texts!")
-            #self.sender.send_tweet(decoded)
+            self.sender.send_tweet(decoded)
 
     def on_error(self, status):
         print('AHHHHHHHHHHH {0}'.format(status))
