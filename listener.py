@@ -17,14 +17,16 @@ BALTIMORE_PD_ID = 22197119
 BALTIMORE_FIRE_ID = 46669448
 NYPD911_ID = 2190685427 #@NYPD911Dispatch
 NYCityAlerts_ID = 487198119 # @nycityalerts
-FDNY_ID= 134846593 #@fdny
-CHICAGO_PD #@Chicago_Police
-CHICAGO_FIRE_DEPARTMENT #@CFDMedia
+FDNY_ID = 134846593 #@fdny
+CHICAGO_PD = 24252468 #@Chicago_Police
+CHICAGO_FIRE_DEPARTMENT = 304543512 #@CFDMedia
 
 TEST_ACCT_ID = 2429573322
 
 # For determining what to listen to given a region
-REGIONS_TO_UIDS = {'Baltimore': [TEST_ACCT_ID]}#[BALTIMORE_PD_ID, BALTIMORE_FIRE_ID], 'newyork': [NYPD911_ID, NYCityAlerts_ID, FDNY_ID]}
+REGIONS_TO_UIDS = {'baltimore': [TEST_ACCT_ID, BALTIMORE_PD_ID, BALTIMORE_FIRE_ID],
+                    'newyork': [NYPD911_ID, NYCityAlerts_ID, FDNY_ID, TEST_ACCT_ID],
+                    'chicago': [CHICAGO_PD, CHICAGO_FIRE_DEPARTMENT, TEST_ACCT_ID]}
 
 # For lookup when we receive a tweet and all we have is a uid
 UIDS_TO_REGIONS = {}
@@ -110,8 +112,10 @@ def _main():
 
     stream = tweepy.Stream(auth, listener)
     logging.info("Beginning stream...")
-    stream.filter(follow=[str(TEST_ACCT_ID)])#str(BALTIMORE_PD_ID), str(BALTIMORE_FIRE_ID)])
-
+    accts = []
+    for accts in REGIONS_TO_UIDS.values():
+        accts.extend([str(val) for val in accts])
+    stream.filter(follow=accts)
 
 if __name__ == '__main__':
     _main()
