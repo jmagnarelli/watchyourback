@@ -23,17 +23,19 @@ def status():
 
 @app.route('/add-user', methods=['POST'])
 def add_user():
+	try:
+		# Check for correct content type
+		if not request.json:
+			abort(400)
 
-	# Check for correct content type
-	if not request.json:
-		abort(400)
+		user = {'phone_number': request.json['phoneNumber'],
+				'region': request.json['region'],
+				'address': request.json['address']}
+		db.users.insert(user)
 
-	user = {'phone_number': request.json['phoneNumber'],
-			'region': request.json['region'],
-			'address': request.json['address']}
-	db.users.insert(user)
-
-	return jsonify({'message': 'All good!'})
+		return jsonify({'message': 'All good!'})
+	except:
+		return 400
 
 if __name__ == '__main__':
 	app.run(host='www.tweetpd.com', port=80, debug=True) # Yeah, I know the debug server shouldn't be used in prod. This is a hackathon.
