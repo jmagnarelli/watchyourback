@@ -55,7 +55,8 @@ class MessageSender(object):
         for recipient in recipients: 
             dest_phone = recipient['phone_number']
             logging.info("Sending SMS message to {0}".format(dest_phone))
-            message = self.twilio_client.sms.messages.create(body="WOOOO BITCAMP", to=dest_phone, from_="+17813281143")
+            message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+            message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
 
 
 class TestListener(tweepy.StreamListener):
