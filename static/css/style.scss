@@ -1,6 +1,7 @@
 $mutequa: #267485;
 $ltblue: #def3f7;
-$ltblue-a: rgba(222,243,247,.8);
+$ltblue-a: rgba(222,243,247,.75);
+$purple: #4c3957;
 
 body {
   background: url(../img/popobg.jpg) no-repeat center center fixed;
@@ -15,7 +16,30 @@ body {
   background-color: $ltblue-a;
   border-color: $ltblue-a;
   margin-top: 50px;
-  h4 {
-    text-align: center;
+  text-align: center;
+  h3 {
+    margin-top: 0;
   }
+  h4 {
+    text-align: left;
+    margin-left: 40px;
+  }
+}
+
+.btn-primary {
+  background-color: $purple;
+  border-color: $purple;
+  &:hover {
+    background-color: #795b8a;
+    border-color: #795b8a;
+  }
+  &.active {
+    background-color: #bbb;
+    border-color: #bbb;
+    color: #C05430;
+  }
+}
+
+.cities {
+  margin-bottom: 15px;
 }
