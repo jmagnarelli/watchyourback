@@ -1,0 +1,1 @@
+[Photo Credit](https://flic.kr/p/7KADUp) for the original background image. Yes, changes were made.

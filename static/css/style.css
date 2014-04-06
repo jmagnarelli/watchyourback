@@ -1,8 +1,14 @@
 body {
-  background-color: #100821;
+  background: url(../img/popobg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: #333; }
 
 .well {
-  background-color: #D2F4EF;
-  border-color: #D2F4EF;
+  background-color: rgba(222, 243, 247, 0.8);
+  border-color: rgba(222, 243, 247, 0.8);
   margin-top: 50px; }
+  .well h4 {
+    text-align: center; }
