@@ -70,10 +70,10 @@
                   <input id="city" type="text" class="form-control add" placeholder="City">
                 </div>
                 <div class="col-xs-4 col-xs-offset-2">
-                  <input id="city" type="text" class="form-control add" placeholder="State">
+                  <input id="state" type="text" class="form-control add" placeholder="State">
                 </div>
                 <div class="col-xs-4">
-                  <input id="city" type="text" class="form-control add" placeholder="Zipcode">
+                  <input id="zip" type="text" class="form-control add" placeholder="Zipcode">
                 </div>
 
 
@@ -98,7 +98,7 @@
       var useSMS = $('#sms-box').prop('checked');
       var useMail = $('#mail-box').prop('checked');
       var phoneNumber = "";
-      var address = "";
+      var address = {};
 
       if (!(useSMS || useMail)){
         return;
@@ -107,7 +107,10 @@
           phoneNumber = $('#phone-number').val();
         }
         if (useMail) {
-          address = $('#address').val();
+          address['street'] = $('#address1').val();
+          address['city'] = $('#city').val();
+          address['state'] = $('#state').val();
+          address['zip'] = $('#zip').val();
         }
       }
       post_obj = {'region': userRegion,
@@ -142,7 +145,7 @@
       $('#sms-box').prop('checked', !!$(this).val());
     });
     
-    $('#address').keyup(function(event){
+    $('.add').keyup(function(event){
       $('#mail-box').prop('checked', !!$(this).val());
     });
 
