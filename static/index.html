@@ -130,6 +130,7 @@
         url: 'http://www.tweetpd.com/add-user',
         success: function (e) {
             console.log(e);
+            $('#submit-btn').addclass('btn-success');
         },
         error: function (xhr, ajaxOptions, thrownError) {
           alert(xhr.status);
