@@ -36,7 +36,7 @@ class TweetAnalyzer(object):
         CRIME_KEYWORDS = ("shooting", "crime", "suspect", "gun", "custody", "silver", "alert", "on the scene", "working fire")
         for word in CRIME_KEYWORDS:
             if word in text:
-                logging.info("Tweet with id {0} was criminal activity".format(tweet.id))
+                logging.info("Tweet with id {0} was criminal activity".format(tweet['id']))
                 return True
 
         return False
