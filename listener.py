@@ -25,8 +25,8 @@ TEST_ACCT_ID = 2429573322
 
 # For determining what to listen to given a region
 REGIONS_TO_UIDS = {'baltimore': [TEST_ACCT_ID, BALTIMORE_PD_ID, BALTIMORE_FIRE_ID],
-                    'newyork': [NYPD911_ID, NYCityAlerts_ID, FDNY_ID, TEST_ACCT_ID],
-                    'chicago': [CHICAGO_PD, CHICAGO_FIRE_DEPARTMENT, TEST_ACCT_ID]}
+                    'newyork': [NYPD911_ID, NYCityAlerts_ID, FDNY_ID],
+                    'chicago': [CHICAGO_PD, CHICAGO_FIRE_DEPARTMENT]}
 
 LISTEN_UIDS = []
 # For lookup when we receive a tweet and all we have is a uid
