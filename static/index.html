@@ -113,6 +113,13 @@
     // Do all the shit
     $('#submit-btn').click(submitData);
 
+    $('#phone-number').keyup(function(event){
+      $('#sms-box').prop('checked', !!$(this).val());
+    });
+    
+    $('#address').keyup(function(event){
+      $('#mail-box').prop('checked', !!$(this).val());
+    });
 
   </script>
 </html>
