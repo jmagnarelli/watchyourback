@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,24 +23,25 @@
         <div class="row">
           <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="well well-lg">
-              <h4>Pick a City</h4>
-              <div class="btn-group" data-toggle="buttons">
+              <h3>Pick a City</h3>
+              <div class="btn-group cities" data-toggle="buttons">
                 <label class="btn btn-primary">
-                  <input type="radio" name="regions" id="baltimore" value="baltimore"> Baltimore
+
+                  <input type="radio" name="options" id="baltimore"> Baltimore
                 </label>
                 <label class="btn btn-primary">
-                  <input type="radio" name="regions" id="boston" value="boston"> Boston
+                  <input type="radio" name="options" id="boston"> Boston
                 </label>
                 <label class="btn btn-primary">
-                  <input type="radio" name="regions" id="ny" value="ny"> New York
+                  <input type="radio" name="options" id="newyork"> New York
                 </label>
               </div>
               
-              <p>How do you want us to send you alerts?</p>
+              <h3>How do you want us to send you alerts?</h3>
               <h4>SMS Notifications</h4>
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="checkbox" id="text-box">
+                  <input type="checkbox" id="sms-box">
                 </span>
                 <input type="text" id="phone-number" class="form-control" placeholder="Phone Number">
               </div><!-- /input-group -->
@@ -68,9 +70,9 @@
 
   <script>
     var submitData = function() {
-      var userRegion = $('input[name=regions]:checked', '#signup').val();
+      var userRegion = $('input[name=options]:checked', '#signup').attr('id');
       var useSMS = $('#sms-box').prop('checked');
-      var useMail = $('#mail-box').prop('checked'));
+      var useMail = $('#mail-box').prop('checked');
       var phoneNumber = "";
       var address = "";
 
@@ -85,7 +87,7 @@
         }
       }
       post_obj = {'region': userRegion,
-                'phoneNumber' phoneNumber,
+                'phoneNumber': phoneNumber,
                 'address': address,
                 'name': 'User'};
       $.ajax({
@@ -96,10 +98,15 @@
         data: JSON.stringify(post_obj),
         // This is the type of data you're expecting back from the server.
         dataType: 'json',
-        url: 'http://tweetpd.com/add-user:5000',
+        url: 'http://tweetpd.com/add-user',
         success: function (e) {
             console.log(e);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr.status);
+          alert(thrownError);
         }
+
       });
 
       
