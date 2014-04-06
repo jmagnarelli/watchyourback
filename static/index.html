@@ -18,20 +18,20 @@
   </head>
   <body>
     <div class="container">
-      <form>        
+      <form id="signup" action="http://www.tweetpd.com/add-user" method="POST">
         <div class="row">
           <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="well well-lg">
               <h4>Pick a City</h4>
               <div class="btn-group" data-toggle="buttons">
                 <label class="btn btn-primary">
-                  <input type="radio" name="options" id="option1"> Baltimore
+                  <input type="radio" name="regions" id="baltimore" value="baltimore"> Baltimore
                 </label>
                 <label class="btn btn-primary">
-                  <input type="radio" name="options" id="option2"> Boston
+                  <input type="radio" name="regions" id="boston" value="boston"> Boston
                 </label>
                 <label class="btn btn-primary">
-                  <input type="radio" name="options" id="option3"> New York
+                  <input type="radio" name="regions" id="ny" value="ny"> New York
                 </label>
               </div>
               
@@ -39,18 +39,21 @@
               <h4>SMS Notifications</h4>
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="checkbox">
+                  <input type="checkbox" id="text-box">
                 </span>
-                <input type="text" class="form-control" placeholder="Phone Number">
+                <input type="text" id="phone-number" class="form-control" placeholder="Phone Number">
               </div><!-- /input-group -->
               <h4>US Mail</h4>
               <div class="input-group">
                 <span class="input-group-addon">
-                  <input type="checkbox">
+                  <input type="checkbox" id="mail-box">
                 </span>
-                <input type="text" class="form-control" placeholder="Mailing Address">
+                <input id="address" type="text" class="form-control" placeholder="Mailing Address">
               </div><!-- /input-group -->
+            <div class="row">
+              <p><a id="submit-btn" class="btn btn-primary btn-lg" role="button">Sign me up</a></p>
 
+            </div>
             </div><!-- /wells -->
           </div><!-- /md cols -->
         </div><!-- /row -->
@@ -62,4 +65,48 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
   </body>
+
+  <script>
+    var submitData = function() {
+      var userRegion = $('input[name=regions]:checked', '#signup').val();
+      var useSMS = $('#sms-box').prop('checked');
+      var useMail = $('#mail-box').prop('checked'));
+      var phoneNumber = "";
+      var address = "";
+
+      if (!(useSMS || useMail)){
+        return;
+      } else {
+        if (useSMS) {
+          phoneNumber = $('#phone-number').val();
+        }
+        if (useMail) {
+          address = $('#address').val();
+        }
+      }
+      post_obj = {'region': userRegion,
+                'phoneNumber' phoneNumber,
+                'address': address,
+                'name': 'User'};
+      $.ajax({
+        type: 'POST',
+        // Provide correct Content-Type, so that Flask will know how to process it.
+        contentType: 'application/json',
+        // Encode your data as JSON.
+        data: JSON.stringify(post_obj),
+        // This is the type of data you're expecting back from the server.
+        dataType: 'json',
+        url: 'http://tweetpd.com/add-user:5000',
+        success: function (e) {
+            console.log(e);
+        }
+      });
+
+      
+    }
+    // Do all the shit
+    $('#submit-btn').click(submitData);
+
+
+  </script>
 </html>
