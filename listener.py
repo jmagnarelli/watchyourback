@@ -22,7 +22,7 @@ FDNY_ID= 134846593 #@fdny
 TEST_ACCT_ID = 2429573322
 
 # For determining what to listen to given a region
-REGIONS_TO_UIDS = {'Baltimore': [TEST_ACCT_ID]}#BALTIMORE_PD_ID, BALTIMORE_FIRE_ID]}
+REGIONS_TO_UIDS = {'Baltimore': [TEST_ACCT_ID]}#[BALTIMORE_PD_ID, BALTIMORE_FIRE_ID], 'newyork': [NYPD911_ID, NYCityAlerts_ID, FDNY_ID]}
 
 # For lookup when we receive a tweet and all we have is a uid
 UIDS_TO_REGIONS = {}
