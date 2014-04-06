@@ -4,7 +4,7 @@ from secrets import lob_secret
 lob.api_key = lob_secret
 
 
-def sendpicture(name,address,city,state,zipcode,country ,category, tweet):
+def sendpicture(name,address,city,state,zipcode,country, tweet):
     #Last two are category of tweet and the actual tweet
 ##    name = str(raw_input("What is your name? "))
 ##    address = str(raw_input("What is your address? "))
@@ -21,7 +21,7 @@ def sendpicture(name,address,city,state,zipcode,country ,category, tweet):
                                  address_zip=verified_address.address.address_zip)
 
     #go through all files in folder and create postcard of each file
-    Newmessage = "Category: "+category+"\nTweet: "+tweet
+    Newmessage = "Tweet: {0}".format(tweet)
 
     lob.Postcard.create(name=name,to=created_address.id,message=Newmessage,front=open(r"postcard.pdf",'rb'),from_address=created_address.id).to_dict 
     #print("Uploaded file")

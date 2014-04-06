@@ -6,6 +6,7 @@ import re
 from twilio.rest import TwilioRestClient
 
 from secrets import *
+from tweetPD import sendpicture
 
 
 # Build this stuff up in advance because it makes things easier
@@ -14,6 +15,10 @@ logging.basicConfig(level=logging.DEBUG)
 # Define emergency service uids here
 BALTIMORE_PD_ID = 22197119
 BALTIMORE_FIRE_ID = 46669448
+NYPD911_ID = 2190685427 #@NYPD911Dispatch
+NYCityAlerts_ID = 487198119 # @nycityalerts
+FDNY_ID= 134846593 #@fdny
+
 TEST_ACCT_ID = 2429573322
 
 # For determining what to listen to given a region
@@ -54,9 +59,15 @@ class MessageSender(object):
         recipients = self.db.users.find({'region': cur_region})
         for recipient in recipients: 
             dest_phone = recipient['phone_number']
-            logging.info("Sending SMS message to {0}".format(dest_phone))
-            message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
-            message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
+            dest_address = recipient['address']
+            if dest_phone:
+                logging.info("Sending SMS message to {0}".format(dest_phone))
+                message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+                message = self.twilio_client.sms.messages.create(body=message_text, to=dest_phone, from_="+17813281143")
+            if dest_address:
+                # TODO (jmagnarelli): log this shit
+                message_text = "ALERT: {0} reports {1}".format(tweet['user']['name'], tweet['text'])
+                message = sendpicture(address['name'],address['street'],address['city'],address['state'],address['zip'],country, message_text)
 
 
 class TestListener(tweepy.StreamListener):
